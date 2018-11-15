@@ -7,6 +7,7 @@ package service;
 
 import com.google.gson.Gson;
 import helper.TokoHelper;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -64,10 +65,11 @@ public class TokoResources {
             @QueryParam("alamatToko") String alamattoko) {
         
         TokoHelper helper = new TokoHelper();
-        TabelToko toko = helper.LoginToko(idtoko);
+        List<TabelToko> list = helper.getAllToko();
+//        TabelToko toko = helper.LoginToko(idtoko);
         Gson gson = new Gson();
         return Response.status(200)
-                .entity(gson.toJson(toko))
+                .entity(gson.toJson(list))
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods",
                         "GET,POST,HEAD,OPTIONS,PUT")

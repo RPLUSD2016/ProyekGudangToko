@@ -8,6 +8,7 @@ package service;
 import com.google.gson.Gson;
 import helper.KirimBarangHelper;
 import java.sql.Date;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -51,10 +52,11 @@ public class KirimBarangResource {
             @QueryParam("tanggal") Date tanggal) {
         //TODO return proper representation object
         KirimBarangHelper helper = new KirimBarangHelper();
-        TabelKirimBarang kirim = (TabelKirimBarang) helper.getAllKirimBarang();
+        List<TabelKirimBarang> list = helper.getAllKirimBarang();
+//        TabelKirimBarang kirim = (TabelKirimBarang) helper.getAllKirimBarang();
         Gson gson = new Gson();
         return Response.status(200)
-                .entity(gson.toJson(kirim))
+                .entity(gson.toJson(list))
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods",
                         "GET,POST,HEAD,OPTIONS,PUT")

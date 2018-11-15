@@ -6,7 +6,6 @@
 package test;
 
 import helper.TokoHelper;
-import java.util.logging.Level;
 import org.jboss.logging.Logger;
 
 /**

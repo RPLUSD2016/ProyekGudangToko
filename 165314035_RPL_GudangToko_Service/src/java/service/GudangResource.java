@@ -7,6 +7,7 @@ package service;
 
 import com.google.gson.Gson;
 import helper.GudangHelper;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -38,6 +39,9 @@ public class GudangResource {
 
     /**
      * Retrieves representation of an instance of service.GudangResource
+     * @param idgudang
+     * @param alamatGudang
+     * @param namaGudang
      * @return an instance of java.lang.String
      */
     @GET
@@ -48,10 +52,11 @@ public class GudangResource {
             @QueryParam("alamatGudang") String alamatGudang) {
         //TODO return proper representation object
         GudangHelper helper = new GudangHelper();
-        TabelGudang gudang = (TabelGudang) helper.getAllGudang();
+        List<TabelGudang> list = helper.getAllGudang();
+//        TabelGudang gudang = (TabelGudang) helper.getAllGudang();
         Gson gson = new Gson();
         return Response.status(200)
-                .entity(gson.toJson(gudang))
+                .entity(gson.toJson(list))
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods",
                         "GET,POST,HEAD,OPTIONS,PUT")

@@ -7,6 +7,7 @@ package service;
 
 import com.google.gson.Gson;
 import helper.StokGudangHelper;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -49,10 +50,11 @@ public class StokGudangResource {
             @QueryParam("jumlahBarang") Integer jumlahBarang) {
         //TODO return proper representation object
         StokGudangHelper helper = new StokGudangHelper();
-        TabelStokGudang stokGudang = (TabelStokGudang) helper.getAllStokGudang();
+        List<TabelStokGudang> list = helper.getAllStokGudang();
+//        TabelStokGudang stokGudang = (TabelStokGudang) helper.getAllStokGudang();
         Gson gson = new Gson();
         return Response.status(200)
-                .entity(gson.toJson(stokGudang))
+                .entity(gson.toJson(list))
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods",
                         "GET,POST,HEAD,OPTIONS,PUT")

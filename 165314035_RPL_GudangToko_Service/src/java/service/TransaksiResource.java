@@ -8,6 +8,7 @@ package service;
 import com.google.gson.Gson;
 import helper.TransaksiHelper;
 import java.sql.Date;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -54,10 +55,11 @@ public class TransaksiResource {
             @QueryParam("tanggal") Date tanggal) {
         //TODO return proper representation object
         TransaksiHelper helper = new TransaksiHelper();
-        TabelTransaksi trans = (TabelTransaksi) helper.getAllTransaksi();
+        List<TabelTransaksi> list = helper.getAllTransaksi();
+//        TabelTransaksi trans = (TabelTransaksi) helper.getAllTransaksi();
         Gson gson = new Gson();
         return Response.status(200)
-                .entity(gson.toJson(trans))
+                .entity(gson.toJson(list))
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods",
                         "GET,POST,HEAD,OPTIONS,PUT")
