@@ -31,19 +31,13 @@ public class TokoHelper {
         return list;
     }
     
-    public TabelToko LoginToko (int idtoko) {
-//        List<TabelToko> list = this.getAllToko();
-        TabelToko toko = (TabelToko) this.getAllToko();
+    public TabelToko LoginToko(int idtoko) {
+        Session session = RPLHibernateUtil.getSessionFactory().openSession();
+        String query = "from TabelToko tk where tk.idtoko=:idtoko";
+        Query q = session.createQuery(query);
+        q.setParameter("idtoko", idtoko);
         
-        if (toko != null) {
-            if (toko.getIdtoko().equals(idtoko)) {
-                return toko;
-            } else {
-                return null;
-            }
-        } else {
-            return null;
-        }
+        return (TabelToko) q.uniqueResult();
     }
     
     public void tambahToko(String namaToko, String alamatToko) {

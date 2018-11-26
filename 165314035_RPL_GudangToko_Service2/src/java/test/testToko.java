@@ -5,6 +5,7 @@
  */
 package test;
 
+import com.google.gson.Gson;
 import helper.TokoHelper;
 import java.util.List;
 import pojos.TabelToko;
@@ -22,6 +23,11 @@ public class testToko {
             System.out.println(list.get(i).getIdtoko());
             System.out.println(list.get(i).getNamaToko());
             System.out.println(list.get(i).getAlamatToko());
+            System.out.println("\n");
         }
+        
+        System.out.println("\n");
+        System.out.println(new Gson().toJson(tk.LoginToko(20180001)));
+        System.out.println(new Gson().toJson(tk.LoginToko(20180002)));
     }
 }
