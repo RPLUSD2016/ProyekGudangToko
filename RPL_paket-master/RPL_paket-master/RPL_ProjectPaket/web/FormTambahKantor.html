@@ -192,23 +192,8 @@ and open the template in the editor.
 
         <div class="topnav">
             <a href="FormLogin.html">Home</a>
-            <!--            <div class="dropdown">
-                            <button class="dropbtn">Pendaftaran</button>
-                            <div id="dropMenu" class="dropdown-content">
-                                <a href="daftarPasien.html">Pendaftaran Pasien Baru</a>
-                                <a class="active">Pendaftaran Pasien Berobat</a>
-                                <a href="dokterAdd.html">Pendaftaran Dokter Baru</a>
-                                <a href="klinikAdd.html">Pendaftaran Klinik Baru</a>                    
-                            </div>
-                        </div>
-                        <div class="dropdown">
-                            <button class="dropbtn">Layanan</button>
-                            <div id="dropMenu" class="dropdown-content">
-                                <a href="dokter.html">Daftar Dokter</a>
-                                <a href="klinik.html">Daftar Klinik</a>                    
-                            </div>
-                        </div>
-                        <a href="login.html">Login</a>-->
+            <a href="FormTracking.html">Form Tracking</a>
+            <a href="FormDaftarKurir.html">Pendaftaran Kurir</a>
         </div>
 
         <section id="register" class="">            
@@ -228,35 +213,54 @@ and open the template in the editor.
                         </div><br>
                         <div class ="form-group">
                             <label for="jenis">Jenis</label><br>
-                            <input type="text" placeholder="Enter Jenis Kantor" id="jenis" required/>
+                            <!--<input type="text" placeholder="Enter Jenis Kantor" id="jenis" required/>-->
+                        </div>
+                        <div>
+                            <select name="jenis" id="jenis">
+                                <option label="--Silakan Pilih--"></option>
+                                <option value="kilat">kilat</option>
+                                <option value="regular">regular</option>
+                            </select>
                         </div><br>
                         <div class ="form-group">
                             <label for="tableRouting">Table Routing</label><br>
-                            <input type="text" placeholder="Enter Table Routing" id="tableRouting" required/>
-                        </div><br>
+                            <!--<input type="text" placeholder="Enter Table Routing" id="tableRouting" required/>-->
+                        </div>
+                        <div>
+                            <select name="tableRouting" id="tableRouting">
+                                <option label="--Silakan Pilih--"></option>
+                                <option value="Gudang">Gudang</option>
+                                <option value="Cabang A">Kantor Cabang A</option>
+                                <option value="Cabang B">Kantor Cabang B</option>
+                            </select>
+                        </div><br><br>
                         <div class="clearfix">
                             <button id="update" type="submit" class="signup">SIMPAN</button>
                             <button id="cancel" type="reset">BATAL</button>
                         </div><br><br>                        
                     </div>
+                    <p id="output"></p>
                 </form>
             </article>
         </section>
 
         <script>
-            function loadDoc() {
-                var url = "http://202.94.83.190:8080/rsku/webresources/pasien/cariPasien?nik=" + nik.value;
-                var xhttp = new XMLHttpRequest();
-                xhttp.open("GET", url, true);
-                xhttp.send();
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("output").innerHTML = this.responseText;
-                        var myObj = JSON.parse(this.responseText);
-                        document.getElementById("nama").value = myObj.nama;
-                        document.getElementById("alamat").value = myObj.alamat;
-                    }
-                }
+            function make_json(form) {
+                var json = {
+                    "idKantor": form.idKantor.value,
+                    "jenis": form.jenis.value,
+                    "tableRouting": form.tableRouting.value,
+                };
+                var html = JSON.stringify(json, 0, 100);
+                var Url = "http://202.94.83.190:8080/RPL_Paket/webresources/TambahKantor/addKantor";
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', Url, false)
+                xhr.setRequestHeader("Content-type", "application/json");
+                xhr.send(html);
+
+                alert(html);
+                document.getElementById("output").innerHTML = html;
+                return false;
             }
         </script>
 

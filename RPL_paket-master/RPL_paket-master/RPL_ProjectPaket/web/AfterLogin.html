@@ -192,108 +192,43 @@ and open the template in the editor.
 
         <div class="topnav">
             <a href="FormLogin.html">Home</a>
-            <a href="FormTracking.html">Form Tracking</a>
-            <a href="FormDaftarKurir.html" class="active">Pendaftaran Kurir</a>
+            <a href="FormTracking.html">Tracking Barang</a>
+            <a href="FormDaftarKurir.html">Pendaftaran Kurir</a>
         </div>
 
         <section id="register" class="">            
             <nav>
-                <h3>Ingin mendaftar menjadi kurir?</h3>
-                <p>Silakan isikan data diri Anda</p>
-                <!--                <p>Cukup dengan mengisikan NIK yang telah terdaftar</p>-->
+                <h3></h3>            
             </nav>
 
             <article>
-                <h3 style="text-align: center;"><b><u>FORM PENDAFTARAN KURIR</u></b></h3>
-                <form action="" id="registerForm" onsubmit="return make_json(this);" method="POST">
-                    <div class="container"><br>
-                        <div class ="form-group">
-                            <label for="nik">NIK</label><br>
-                            <input type="text" placeholder="Enter NIK" id="nik" required/>
-                        </div><br>
-                        <div class ="form-group">
-                            <label for="nama">Nama</label><br>
-                            <input type="text" placeholder="Enter Nama" id="nama" required/>
-                        </div><br>
-                        <div class ="form-group">
-                            <label for="alamat">Alamat Tinggal</label><br>
-                            <input type="text" placeholder="Enter Alamat" id="alamat" required/>
-                        </div><br>
-                        <div class ="form-group">
-                            <label for="agama">Agama</label><br>
-                            <!--<input type="text" placeholder="Enter Agama" id="agama" required/>-->
-                        </div>
-                        <div>
-                            <select name="agama" id="agama">
-                                <option label="--Silakan Pilih--"></option>
-                                <option value="Islam">Islam</option>
-                                <option value="Kristen Protestan">Kristen Protestan</option>
-                                <option value="Katolik">Katolik</option>
-                                <option value="Hindu">Hindu</option>
-                                <option value="Budha">Budha</option>
-                                <option value="Konghu Chu">Konghu Chu</option>
-                                <option value="Yahudi">Yahudi</option>                                
-                                <option value="Lainnya">Lainnya</option>
-                            </select>
-                        </div><br>
-                        <div class="form-group">
-                            <label for="tanggalLahir">Tanggal Lahir</label><br>
-                            <input type="date" placeholder="Enter Tanggal Lahir" id="tanggalLahir" required/>
-                        </div><br>
-                        <div class ="form-group">
-                            <label for="noTelp">No. Telepon</label><br>
-                            <input type="text" placeholder="Enter No. Telp" id="noTelp" required/>
-                        </div><br>
-                        <div class ="form-group">
-                            <label for="status">Status</label><br>
-                            <!--<input type="text" placeholder="Enter Status" id="status" required/>-->
-                        </div>
-                        <div>
-                            <select name="status" id="status">
-                                <option label="--Silakan Pilih--"></option>
-                                <option value="Nikah">Nikah</option>
-                                <option value="Belum Nikah">Belum Nikah</option>
-                            </select>
-                        </div><br><br>                        
-                        <div class="clearfix">
-                            <button id="cancel" type="reset">BATAL</button>
-                            <button id="save" type="submit" class="signup">DAFTAR</button>
-                        </div><br><br>
-                    </div>
-                    <p id="output"></p>
-                </form>
+                <br><br><br><br><br><br>
+                <a href="FormDaftarBarang.html" style="font-size: 25px; text-decoration: none;">Form Daftar Barang</a><br><br><br><br>
+                <a href="FormInputStatus.html" style="font-size: 25px; text-decoration: none;">Form Input Status</a><br><br><br><br>
+                <a href="FormTambahKantor.html" style="font-size: 25px; text-decoration: none;">Form Tambah Kantor</a><br><br><br><br>
             </article>
         </section>
 
         <script>
-            function make_json(form) {
-                var json = {
-                    "nik": form.nik.value,
-                    "nama": form.nama.value,
-                    "alamat": form.alamat.value,
-                    "agama": form.agama.value,
-                    "tanggalLahir": form.tanggalLahir.value,
-                    "noTelp": form.noTelp.value,
-                    "status": form.status.value,
-                };
-                var html = JSON.stringify(json, 0, 100);
-//                var Url = "http://localhost:8084/";
-                var Url = "http://202.94.83.190:8080/RPL_Paket/webresources/kurir/addKurir";
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', Url, false)
-                xhr.setRequestHeader("Content-type", "application/json");
-                xhr.send(html);
-
-                alert(html);
-                document.getElementById("output").innerHTML = html;
-                return false;
+            function loadDoc() {
+                var url = "http://202.94.83.190:8080/rsku/webresources/pasien/cariPasien?nik=" + nik.value;
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("GET", url, true);
+                xhttp.send();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("output").innerHTML = this.responseText;
+                        var myObj = JSON.parse(this.responseText);
+                        document.getElementById("nama").value = myObj.nama;
+                        document.getElementById("alamat").value = myObj.alamat;
+                    }
+                }
             }
         </script>
 
         <footer>
-            <p>Kritik dan Saran (0721)-74032576</p>
+            <p>PT. PROJECT RPL PAKET</p>
         </footer>
 
     </body>
 </html>
-
