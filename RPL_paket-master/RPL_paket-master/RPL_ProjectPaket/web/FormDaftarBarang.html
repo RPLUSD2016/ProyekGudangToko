@@ -185,7 +185,6 @@ and open the template in the editor.
             }
         </style>        
     </head>
-    
     <body>
         <header>
             <h1>Project RPL Paket</h1>
@@ -193,8 +192,23 @@ and open the template in the editor.
 
         <div class="topnav">
             <a href="FormLogin.html">Home</a>
-            <a href="FormTracking.html">Form Tracking</a>
-            <a href="FormDaftarKurir.html">Pendaftaran Kurir</a>
+            <!--            <div class="dropdown">
+                            <button class="dropbtn">Pendaftaran</button>
+                            <div id="dropMenu" class="dropdown-content">
+                                <a href="daftarPasien.html">Pendaftaran Pasien Baru</a>
+                                <a class="active">Pendaftaran Pasien Berobat</a>
+                                <a href="dokterAdd.html">Pendaftaran Dokter Baru</a>
+                                <a href="klinikAdd.html">Pendaftaran Klinik Baru</a>                    
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button class="dropbtn">Layanan</button>
+                            <div id="dropMenu" class="dropdown-content">
+                                <a href="dokter.html">Daftar Dokter</a>
+                                <a href="klinik.html">Daftar Klinik</a>                    
+                            </div>
+                        </div>
+                        <a href="login.html">Login</a>-->
         </div>
 
         <section id="register" class="">            
@@ -248,10 +262,6 @@ and open the template in the editor.
                             <input type="text" placeholder="Enter Status Barang" id="starusBarang" required disabled=""/>
                         </div><br>
                         <div class="form-group">
-                            <label for="namaKurir">Nama Kurir</label><br>
-                            <input type="text" placeholder="Enter Nama Kurir" id="NamaKurir" required disabled=""/>
-                        </div><br>
-                        <div class="form-group">
                             <label for="totalHarga">Total Harga</label><br>
                             <input type="text" placeholder="Enter Total Harga" id="totalHarga" required/>
                         </div><br>
@@ -265,32 +275,19 @@ and open the template in the editor.
         </section>
 
         <script>
-            function make_json(form) {
-                var json = {
-                    "idBarang": form.idBarang.value,
-                    "namaPengirim": form.namaPengirim.value,
-                    "namaPenerima": form.namaPenerima.value,
-                    "noHpPengirim": form.noHpPengirim.value,
-                    "noHpPenerima": form.noHpPenerima,
-                    "alamatTujuan": form.alamatTujuan.value,
-                    "alamatPengirim": form.alamatPengirim.value,
-                    "tanggalMasuk": form.tanggalMasuk.value,
-                    "jenisPengiriman": form.jenisPengiriman.value,
-                    "statusBarang": form.statusBarang.value,
-                    "namaKurir": form.namaKurir.value,
-                    "totalHarga": form.totalHarga.value,
-                };
-                var html = JSON.stringify(json, 0, 100);
-//                var Url = "http://localhost:8084/";
-                var Url = "http://202.94.83.190:8080/RPL_Paket/webresources/barang/addBarang";
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', Url, false)
-                xhr.setRequestHeader("Content-type", "application/json");
-                xhr.send(html);
-
-                alert(html);
-                document.getElementById("output").innerHTML = html;
-                return false;
+            function loadDoc() {
+                var url = "http://202.94.83.190:8080/rsku/webresources/pasien/cariPasien?nik=" + nik.value;
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("GET", url, true);
+                xhttp.send();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("output").innerHTML = this.responseText;
+                        var myObj = JSON.parse(this.responseText);
+                        document.getElementById("nama").value = myObj.nama;
+                        document.getElementById("alamat").value = myObj.alamat;
+                    }
+                }
             }
         </script>
 
