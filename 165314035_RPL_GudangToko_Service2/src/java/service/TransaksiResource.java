@@ -95,7 +95,8 @@ public class TransaksiResource {
         Gson gson = new Gson();
         TabelTransaksi trans = gson.fromJson(data, TabelTransaksi.class);
         TransaksiHelper help = new TransaksiHelper();
-        help.transaksiBaru(trans.getNamaBarang(), trans.getHargaBarang(), trans.getJumlahBarang(), trans.getHargaTotal(), (Date) trans.getTanggal());
+        help.transaksiBaru(trans.getIdtoko(), trans.getNamaBarang(), trans.getHargaBarang(), trans.getJumlahBarang(), 
+                trans.getHargaTotal(), (Date) trans.getTanggal());
         return Response.status(200).entity(trans).build();
     }
 }

@@ -1,5 +1,5 @@
 package pojos;
-// Generated 14-Nov-2018 13:53:41 by Hibernate Tools 4.3.1
+// Generated 28-Nov-2018 16:52:45 by Hibernate Tools 4.3.1
 
 
 
@@ -10,6 +10,7 @@ public class TabelStokBarangToko  implements java.io.Serializable {
 
 
      private Integer idbarangToko;
+     private int idtoko;
      private String namaBarang;
      private int jumlahBarang;
      private int hargaBarang;
@@ -17,7 +18,8 @@ public class TabelStokBarangToko  implements java.io.Serializable {
     public TabelStokBarangToko() {
     }
 
-    public TabelStokBarangToko(String namaBarang, int jumlahBarang, int hargaBarang) {
+    public TabelStokBarangToko(int idtoko, String namaBarang, int jumlahBarang, int hargaBarang) {
+       this.idtoko = idtoko;
        this.namaBarang = namaBarang;
        this.jumlahBarang = jumlahBarang;
        this.hargaBarang = hargaBarang;
@@ -29,6 +31,13 @@ public class TabelStokBarangToko  implements java.io.Serializable {
     
     public void setIdbarangToko(Integer idbarangToko) {
         this.idbarangToko = idbarangToko;
+    }
+    public int getIdtoko() {
+        return this.idtoko;
+    }
+    
+    public void setIdtoko(int idtoko) {
+        this.idtoko = idtoko;
     }
     public String getNamaBarang() {
         return this.namaBarang;

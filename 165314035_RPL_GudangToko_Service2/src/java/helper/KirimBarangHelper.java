@@ -33,12 +33,12 @@ public class KirimBarangHelper {
         return list;
     }
     
-    public void kirimBarang(String namaBarang, 
+    public void kirimBarang(int idtoko, String namaBarang, 
             int jumlahBarang, Date tanggal){
         
         Session session = RPLHibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        TabelKirimBarang kirim = new TabelKirimBarang(namaBarang, jumlahBarang, tanggal);
+        TabelKirimBarang kirim = new TabelKirimBarang(idtoko, namaBarang, jumlahBarang, tanggal);
         session.saveOrUpdate(kirim);
         transaction.commit();
         session.close();

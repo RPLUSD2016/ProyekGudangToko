@@ -31,12 +31,12 @@ public class StokBarangTokoHelper {
         return list;
     }
     
-    public void tambahStokToko(String namaBarang, 
+    public void tambahStokToko(int idtoko, String namaBarang, 
             int jumlahBarang, int hargaBarag) {
         
         Session session = RPLHibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        TabelStokBarangToko stokToko = new TabelStokBarangToko(namaBarang, jumlahBarang, hargaBarag);
+        TabelStokBarangToko stokToko = new TabelStokBarangToko(idtoko, namaBarang, jumlahBarang, hargaBarag);
         session.saveOrUpdate(stokToko);
         transaction.commit();
         session.close();

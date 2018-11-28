@@ -46,11 +46,11 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:mysql://202.94.83.190:3306/db165314035?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">165314035</property>
     <property name="hibernate.connection.password">165314035</property>
-    <mapping resource="pojos/TabelStokGudang.hbm.xml"/>
     <mapping resource="pojos/TabelStokBarangToko.hbm.xml"/>
-    <mapping resource="pojos/TabelToko.hbm.xml"/>
-    <mapping resource="pojos/TabelTransaksi.hbm.xml"/>
-    <mapping resource="pojos/TabelGudang.hbm.xml"/>
     <mapping resource="pojos/TabelKirimBarang.hbm.xml"/>
+    <mapping resource="pojos/TabelStokGudang.hbm.xml"/>
+    <mapping resource="pojos/TabelGudang.hbm.xml"/>
+    <mapping resource="pojos/TabelTransaksi.hbm.xml"/>
+    <mapping resource="pojos/TabelToko.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

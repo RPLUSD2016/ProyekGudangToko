@@ -24,6 +24,8 @@ public class testTransaksi {
             System.out.println(list.get(i).getJumlahBarang());
             System.out.println(list.get(i).getHargaTotal());
             System.out.println(list.get(i).getTanggal());
+            System.out.println(list.get(i).getIdtoko());
+            System.out.println("\n");
         }
     }
 }

@@ -41,10 +41,10 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="db165314035"/>
-  <table-filter match-name="TabelStokGudang"/>
-  <table-filter match-name="TabelGudang"/>
-  <table-filter match-name="TabelKirimBarang"/>
-  <table-filter match-name="TabelToko"/>
   <table-filter match-name="TabelTransaksi"/>
   <table-filter match-name="TabelStokBarangToko"/>
+  <table-filter match-name="TabelToko"/>
+  <table-filter match-name="TabelKirimBarang"/>
+  <table-filter match-name="TabelStokGudang"/>
+  <table-filter match-name="TabelGudang"/>
 </hibernate-reverse-engineering>

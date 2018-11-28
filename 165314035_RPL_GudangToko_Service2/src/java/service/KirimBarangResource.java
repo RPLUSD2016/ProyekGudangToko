@@ -93,7 +93,7 @@ public class KirimBarangResource {
         Gson gson = new Gson();
         TabelKirimBarang kirim = gson.fromJson(data, TabelKirimBarang.class);
         KirimBarangHelper help = new KirimBarangHelper();
-        help.kirimBarang(kirim.getNamaBarang(), kirim.getJumlahBarang(), (Date) kirim.getTanggal());
+        help.kirimBarang(kirim.getIdtoko(), kirim.getNamaBarang(), kirim.getJumlahBarang(), (Date) kirim.getTanggal());
         return Response.status(200).entity(kirim).build();
     }
 }

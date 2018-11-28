@@ -32,13 +32,13 @@ public class TransaksiHelper {
         return list;
     }
     
-    public void transaksiBaru(String namaBarang, 
+    public void transaksiBaru(int idtoko, String namaBarang, 
             int hargaBarang, int jumlahBarang, int hargaTotal,
             Date tanggal) {
         
         Session session = RPLHibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        TabelTransaksi transaksi = new TabelTransaksi(namaBarang, hargaBarang, 
+        TabelTransaksi transaksi = new TabelTransaksi(idtoko, namaBarang, hargaBarang, 
                 jumlahBarang, hargaTotal, tanggal);
         session.saveOrUpdate(transaksi);
         transaction.commit();

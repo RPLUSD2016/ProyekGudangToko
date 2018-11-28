@@ -1,5 +1,5 @@
 package pojos;
-// Generated 14-Nov-2018 13:53:41 by Hibernate Tools 4.3.1
+// Generated 28-Nov-2018 16:52:45 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -11,6 +11,7 @@ public class TabelTransaksi  implements java.io.Serializable {
 
 
      private Integer idtransaksi;
+     private int idtoko;
      private String namaBarang;
      private int hargaBarang;
      private int jumlahBarang;
@@ -20,7 +21,8 @@ public class TabelTransaksi  implements java.io.Serializable {
     public TabelTransaksi() {
     }
 
-    public TabelTransaksi(String namaBarang, int hargaBarang, int jumlahBarang, int hargaTotal, Date tanggal) {
+    public TabelTransaksi(int idtoko, String namaBarang, int hargaBarang, int jumlahBarang, int hargaTotal, Date tanggal) {
+       this.idtoko = idtoko;
        this.namaBarang = namaBarang;
        this.hargaBarang = hargaBarang;
        this.jumlahBarang = jumlahBarang;
@@ -34,6 +36,13 @@ public class TabelTransaksi  implements java.io.Serializable {
     
     public void setIdtransaksi(Integer idtransaksi) {
         this.idtransaksi = idtransaksi;
+    }
+    public int getIdtoko() {
+        return this.idtoko;
+    }
+    
+    public void setIdtoko(int idtoko) {
+        this.idtoko = idtoko;
     }
     public String getNamaBarang() {
         return this.namaBarang;

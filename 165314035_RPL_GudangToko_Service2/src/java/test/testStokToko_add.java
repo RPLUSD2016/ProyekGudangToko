@@ -16,7 +16,7 @@ public class testStokToko_add {
     public static void main(String[] args) {
         try {
             StokBarangTokoHelper toko = new StokBarangTokoHelper();
-            toko.tambahStokToko("Dettol Tisu Basah", 100, 8000);
+            toko.tambahStokToko(20180001, "Wafer Tanggo Vanilla", 100, 8000);
         } catch (Exception e) {
             Logger.getLogger(testStokToko_add.class.getName());
         }

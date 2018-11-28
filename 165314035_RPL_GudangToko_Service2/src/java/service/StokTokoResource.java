@@ -92,7 +92,7 @@ public class StokTokoResource {
         Gson gson = new Gson();
         TabelStokBarangToko stok = gson.fromJson(data, TabelStokBarangToko.class);
         StokBarangTokoHelper help = new StokBarangTokoHelper();
-        help.tambahStokToko(stok.getNamaBarang(), stok.getJumlahBarang(), stok.getHargaBarang());
+        help.tambahStokToko(stok.getIdtoko(), stok.getNamaBarang(), stok.getJumlahBarang(), stok.getHargaBarang());
         return Response.status(200).entity(stok).build();
     }
 }
