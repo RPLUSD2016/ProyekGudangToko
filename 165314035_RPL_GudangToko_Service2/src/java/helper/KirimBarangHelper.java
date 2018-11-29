@@ -43,4 +43,36 @@ public class KirimBarangHelper {
         transaction.commit();
         session.close();
     }
+    
+    public List<TabelKirimBarang> cariKirimBarang(int idtoko) {
+        Session session = RPLHibernateUtil.getSessionFactory().openSession();
+        Transaction ts = session.beginTransaction();
+        String query = "from TabelKirimBarang kr where kr.idtoko=:idtoko";
+        Query q = session.createQuery(query);
+        q.setParameter("idtoko", idtoko);
+        List<TabelKirimBarang> list = q.list();
+        ts.commit();
+        session.close();
+        if (list.size() > 0) {
+            return list;
+        } else {
+            return null;
+        }
+    }
+    
+    public List<TabelKirimBarang> cariNamaKirimBarang(String namaBarang) {
+        Session session = RPLHibernateUtil.getSessionFactory().openSession();
+        Transaction tr = session.beginTransaction();
+        String query = "from TabelKirimBarang kr where kr.namaBarang=:namaBarang";
+        Query q = session.createQuery(query);
+        q.setParameter("namaBarang", namaBarang);
+        List<TabelKirimBarang> list = q.list();
+        tr.commit();
+        session.close();
+        if (list.size() > 0) {
+            return list;
+        } else {
+            return null;
+        }
+    }
 }

@@ -53,10 +53,11 @@ public class TransaksiResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTransaksi(
             @QueryParam("idbarang") Integer idbarang,
+            @QueryParam("idtoko") int idtoko,
             @QueryParam("namaBarang") String namaBarang, 
-            @QueryParam("hargaBarang") Integer hargaBarang, 
-            @QueryParam("jumlahBarang") Integer jumlahBarang, 
-            @QueryParam("hargaTotal") Integer hargaTotal,
+            @QueryParam("hargaBarang") int hargaBarang, 
+            @QueryParam("jumlahBarang") int jumlahBarang, 
+            @QueryParam("hargaTotal") int hargaTotal,
             @QueryParam("tanggal") Date tanggal) {
         //TODO return proper representation object
         TransaksiHelper helper = new TransaksiHelper();
@@ -98,5 +99,51 @@ public class TransaksiResource {
         help.transaksiBaru(trans.getIdtoko(), trans.getNamaBarang(), trans.getHargaBarang(), trans.getJumlahBarang(), 
                 trans.getHargaTotal(), (Date) trans.getTanggal());
         return Response.status(200).entity(trans).build();
+    }
+    
+    @GET
+    @Path("cariTransaksi")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response cariTransaksi(@QueryParam("idtoko") int idtoko) {
+        TransaksiHelper help = new TransaksiHelper();
+        List<TabelTransaksi> list = help.cariTransaksi(idtoko);
+        Gson gson = new Gson();
+        
+        return Response.status(200).entity(gson.toJson(list))
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods",
+                        "GET,POST,HEAD,OPTIONS,PUT")
+                .header("Access-Control-Allow-Headers",
+                        "Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers")
+                .header("Access-Exposed-Headers",
+                        "Access-Control-Allow-Origin,Access-Control-Allow-Credentials")
+                .header("Access-Support-Credentials",
+                        "true")
+                .header("Access-Control-Max-Age", "2")
+                .header("Access-Preflight-Maxage", "2")
+                .build();
+    }
+    
+    @GET
+    @Path("cariNamaBarang")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response cariNamaBarang(@QueryParam("namaBarang") String namaBarang) {
+        TransaksiHelper help = new TransaksiHelper();
+        List<TabelTransaksi> list = help.cariNamaBarang(namaBarang);
+        Gson gson = new Gson();
+        
+        return Response.status(200).entity(gson.toJson(list))
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods",
+                        "GET,POST,HEAD,OPTIONS,PUT")
+                .header("Access-Control-Allow-Headers",
+                        "Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers")
+                .header("Access-Exposed-Headers",
+                        "Access-Control-Allow-Origin,Access-Control-Allow-Credentials")
+                .header("Access-Support-Credentials",
+                        "true")
+                .header("Access-Control-Max-Age", "2")
+                .header("Access-Preflight-Maxage", "2")
+                .build();
     }
 }

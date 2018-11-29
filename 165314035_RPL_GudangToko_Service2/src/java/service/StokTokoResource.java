@@ -41,6 +41,7 @@ public class StokTokoResource {
     /**
      * Retrieves representation of an instance of service.StokTokoResource
      *
+     * @param idtoko
      * @param idbarang
      * @param hargaBarang
      * @param namaBarang
@@ -50,10 +51,11 @@ public class StokTokoResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getStokToko(
+            @QueryParam("idtoko") int idtoko,
             @QueryParam("idbarang") Integer idbarang,
             @QueryParam("namaBarang") String namaBarang,
-            @QueryParam("jumlahBarang") Integer jumlahBarang,
-            @QueryParam("hargaBarang") Integer hargaBarang) {
+            @QueryParam("jumlahBarang") int jumlahBarang,
+            @QueryParam("hargaBarang") int hargaBarang) {
 
         StokBarangTokoHelper helper = new StokBarangTokoHelper();
 //        TabelStokBarangToko stoktk = (TabelStokBarangToko) helper.getAllBarangToko();
@@ -94,5 +96,52 @@ public class StokTokoResource {
         StokBarangTokoHelper help = new StokBarangTokoHelper();
         help.tambahStokToko(stok.getIdtoko(), stok.getNamaBarang(), stok.getJumlahBarang(), stok.getHargaBarang());
         return Response.status(200).entity(stok).build();
+    }
+    
+    @GET
+    @Path("cariStokIDToko")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response cariStokIDToko(@QueryParam("idtoko") int idtoko){
+        StokBarangTokoHelper help = new StokBarangTokoHelper();
+        List<TabelStokBarangToko> list = help.cariStokToko(idtoko);
+//        TabelStokBarangToko toko = help.cariStokToko(idtoko);
+        Gson gson = new Gson();
+        
+        return Response.status(200).entity(gson.toJson(list))
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods",
+                        "GET,POST,HEAD,OPTIONS,PUT")
+                .header("Access-Control-Allow-Headers",
+                        "Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers")
+                .header("Access-Exposed-Headers",
+                        "Access-Control-Allow-Origin,Access-Control-Allow-Credentials")
+                .header("Access-Support-Credentials",
+                        "true")
+                .header("Access-Control-Max-Age", "2")
+                .header("Access-Preflight-Maxage", "2")
+                .build();
+    }
+    
+    @GET
+    @Path("cariNamaBarang")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response cariNamaBarang(@QueryParam("namaBarang") String namaBarang) {
+        StokBarangTokoHelper help = new StokBarangTokoHelper();
+        List<TabelStokBarangToko> list = help.cariNamaBarang(namaBarang);
+        Gson gson = new Gson();
+        
+        return Response.status(200).entity(gson.toJson(list))
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods",
+                        "GET,POST,HEAD,OPTIONS,PUT")
+                .header("Access-Control-Allow-Headers",
+                        "Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers")
+                .header("Access-Exposed-Headers",
+                        "Access-Control-Allow-Origin,Access-Control-Allow-Credentials")
+                .header("Access-Support-Credentials",
+                        "true")
+                .header("Access-Control-Max-Age", "2")
+                .header("Access-Preflight-Maxage", "2")
+                .build(); 
     }
 }

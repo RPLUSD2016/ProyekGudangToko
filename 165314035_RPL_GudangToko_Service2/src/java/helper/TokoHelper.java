@@ -49,4 +49,20 @@ public class TokoHelper {
         transaction.commit();
         session.close();
     }
+    
+    public List<TabelToko> cariToko(Integer idtoko) {
+        Session session = RPLHibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        String query = "from TabelToko tk where tk.idtoko=:idtoko";
+        Query q = session.createQuery(query);
+        q.setParameter("idtoko", idtoko);
+        List<TabelToko> list = q.list();
+        transaction.commit();
+        session.close();
+        if (list.size() > 0) {
+            return list;
+        } else  {
+            return null;
+        }
+    }
 }
