@@ -1,208 +1,223 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>Sistem Informasi Distribusi Barang Toko-Gudang</title>
+        <style>
+
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: Arial;
+                padding: 10px;
+                background-image: url("gudang.jpg");
+
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, td {
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even){background-color: #f2f2f2}
+
+            th {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            /* Header/Blog Title */
+            .header {
+                padding: 30px;
+                text-align: center;
+
+            }
+
+            .header h1 {
+                font-size: 50px;
+            }
+
+            /* Style the top navigation bar */
+            .topnav {
+                overflow: hidden;
+                background-color: #333;
+            }
+
+            /* Style the topnav links */
+            .topnav a {
+                float: left;
+                display: block;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+            /* Change color on hover */
+            .topnav a:hover {
+                background-color: #ddd;
+                color: black;
+            }
+            .button {
+                background-color: #00FFFF; /* Aqua */
+                border: none;
+                color: orange;
+                padding: 16px 32px;
+                text-align: left;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                -webkit-transition-duration: 0.4s; /* Safari */
+                transition-duration: 0.4s;
+                cursor: pointer;
+            }
+            /* Create two unequal columns that floats next to each other */
+            /* Left column */
+            .leftcolumn {   
+                float: center;
+                width: 100%;
+                text-align: center;
+            }
+
+            /* Right column */
+            .rightcolumn {
+                float: left;
+                width: 25%;
+                padding-left: 20px;
+            }
+
+            /* Fake image */
+
+
+            /* Add a card effect for articles */
+            .card {
+
+                padding: 20px;
+                margin-top: 20px;
+            }
+
+            /* Clear floats after the columns */
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+            /* Footer */
+            .footer {
+                padding: 20px;
+                text-align: center;
+                background: #ddd;
+                margin-top: 20px;
+                width:100%;
+                float: left;
+            }
+
+            /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+            @media screen and (max-width: 800px) {
+                .leftcolumn, .rightcolumn {   
+                    width: 100%;
+                    padding: 0;
+                }
+            }
+
+            /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+            @media screen and (max-width: 400px) {
+                .topnav a {
+                    float: none;
+                    width: 100%;
+                }
+            }
+        </style>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>Tabel Kirim Barang</div>
-    </body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-    
-* {
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial;
-    padding: 10px;
-    background: #f1f1f1;
-}
-
-/* Header/Blog Title */
-.header {
-    padding: 30px;
-    text-align: center;
-    background: white;
-}
-
-.header h1 {
-    font-size: 50px;
-}
-
-/* Style the top navigation bar */
-.topnav {
-    overflow: hidden;
-    background-color: #333;
-}
-
-/* Style the topnav links */
-.topnav a {
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-/* Change color on hover */
-.topnav a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-/* Create two unequal columns that floats next to each other */
-/* Left column */
-.leftcolumn {   
-    float: center;
-    width: 100%;
-    text-align: center;
-}
-
-/* Right column */
-.rightcolumn {
-    float: left;
-    width: 25%;
-    background-color: #f1f1f1;
-    padding-left: 20px;
-}
-
-/* Fake image */
-.fakeimg {
-    background-color: #aaa;
-    width: 100%;
-    padding: 20px;
-}
-
-/* Add a card effect for articles */
-.card {
-    background-color: white;
-    padding: 20px;
-    margin-top: 20px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-/* Footer */
-.footer {
-    padding: 20px;
-    text-align: center;
-    background: #ddd;
-    margin-top: 20px;
-    width:100%;
-    float: left;
-}
-
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 800px) {
-    .leftcolumn, .rightcolumn {   
-        width: 100%;
-        padding: 0;
-    }
-}
-
-/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
-@media screen and (max-width: 400px) {
-    .topnav a {
-        float: none;
-        width: 100%;
-    }
-}
-</style>
-<meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
+    </head>
+    <body>
 
-<div class="header">
-  <h1>SIGUDANG</h1>
-  
-</div>
+       <div class="header">
+            <h1 style="text-align: center">
+           <img src="logo.png" alt="SIGUDANG" style="align:center;width:400px;height:100px;">
+       </h1>
 
-<div class="topnav" style="float:center">
-      <a href="#">HOME</a>
-  <a href="#" style="float:center">STOK BARANG TOKO</a>
-  <a href="#" style="float:center">KIRIM BARANG</a>
-  <a href="#" style="float:center">PENJUALAN BARANG</a>
-  <a href="#" style="float:center">PENERIMAAN BARANG</a>
-</div>
+        <div class="topnav" style="float:center">
+            <a href="index.html">HOME</a>
+            <a href="HalamanLihatTabelStokBarangToko.html" style="float:center">STOK BARANG TOKO</a>
+            <a href="HalamanLihatTabelKirimBarang.html" style="float:center">KIRIM BARANG</a>
+            <a href="HalamanLihatTabelTransaksi.html" style="float:center">PENJUALAN BARANG</a>
+            <a href="HalamanMenerimaBarang.html" style="float:center">PENERIMAAN BARANG</a>
+        </div>
 
-<div class="row">
-  <div class="leftcolumn">
-    <div class="card">
-         <h1 style="text-align:center"></h1>
-         <div id ="demo">
-            <h2 style="color:white;"> ID TOKO</h2>
-            <label style="color:white;" for =name"><b>ID</b></label>
-            <input type ="text" placeholder="masukkan id toko " id="idToko" required>
-            <button type="button" onclick="loadDoc()" id="btn">OK</button>
-            <p id="output">
-            </p>
-            <div id="tab">
-                
-            </div>
-           
-        <script>
-            function loadDoc(){
-                var url ="http://206.189.38.188:8080/myrs/webresources/antrian/cariAntri?tanggal="+tanggal.value;
-                var xhttp = new XMLHttpRequest();
-                xhttp.open("GET",url,true);
-                xhttp.send();
-                xhttp.onreadystatechange = function(){
-                    if(this.readyState == 4 && this.status == 200){
-                        document.getElementById("output").innerHTML = this.responseText;
-                        var myObj = JSON.parse(this.responseText);
-                         myFunction(this.responseText);
-                    
-                                
-                    }
-                    
-                }
-                function myFunction(response) {
-                var arr = JSON.parse(response);
-                var i;
-                var out = "<table border=1>";
+        <div class="row">
+            <div class="leftcolumn">
+                <div class="card">
+                    <h1 style="text-align:center"></h1>
+                    <div id ="demo">
+                        <h2> ID TOKO</h2>
+                        <label style="color:white" for =name"><b></b></label>
+                        <input type ="text" placeholder="masukkan id toko " id="IDToko" required>
+                        <br>
+                        <br>
+                         <button type="button" onclick="window.location='HalamanMengirimBarang.html';" id="btn">Lakukan Pengiriman Barang</button>
+                        <button type="button" onclick="login()" id="btn">Tampilkan Daftar Pengiriman Barang</button>
+                        
 
-                for (i = 0; i < arr.length; i++) {
-                   
-                    out += "<tr><td>" +
-                            arr[i].noRm +
-                            "</td><td>" +
-                            arr[i].nama +
-                            "</td><td>" +
-                            arr[i].alamat 
-                            
+                        <p id="output">
+                        </p>
+                        <div id="tab">
+                            <div id="tab1">
 
-                }
-                out += "</table>";
-                document.getElementById("tab").innerHTML = out;
-            }
-            }
-            </script>
-    
+                            </div>
+                           
+                            <br>
+                            <br>
 
-<div class="footer">
-  <h2>Footer</h2>
-</div>
 
-</body>
-</html>
+                            <script>
+
+                                function login() {
+                                    var json = {
+                                        "IDtoko": document.getElementById("IDToko").value
+
+                                    };
+                                    var xmlhttp = new XMLHttpRequest();
+                                    var url = "http://202.94.83.190:8080/165314035_RPL_GudangToko_Service2/webresources/KirimBarang";
+                                    xmlhttp.onreadystatechange = function () {
+                                        if (this.readyState == 4 && this.status == 200) {
+                                            myFunction(this.responseText);
+                                        }
+                                    }
+                                    xmlhttp.open("GET", url, true);
+                                    xmlhttp.send();
+
+                                    function myFunction(response) {
+                                        var arr = JSON.parse(response);
+                                        var i;
+                                        var out = "<table id='tabel'><tr><th>ID Barang</th><th>ID Toko </th><th>nama barang</th><th>Jumlah barang</th><th>Tanggal</th>";
+
+                                        for (i = 0; i < arr.length; i++) {
+                                            out += "<tr><td>" +
+                                                    arr[i].IDBarang + "</td><td>" + arr[i].IDToko + "</td><td>" +
+                                                    arr[i].namaBarang + "</td><td>" + arr[i].jumlahBarang + "</td><td>" +
+                                                    arr[i].tanggal;
+
+                                        }
+                                        out += "</table>";
+                                        document.getElementById("tab").innerHTML = out;
+                                    }
+                                }
+                            </script>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+
+
+                            </body>
+                            </html>

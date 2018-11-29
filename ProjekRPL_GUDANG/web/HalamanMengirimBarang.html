@@ -83,7 +83,7 @@
 
             /* Add a card effect for articles */
             .card {
-      
+
                 padding: 20px;
                 margin-top: 20px;
             }
@@ -129,17 +129,17 @@
     </head>
     <body>
 
-        <div class="header">
-            <h1>SIGUDANG</h1>
-
-        </div>
+       <div class="header">
+            <h1 style="text-align: center">
+           <img src="logo.png" alt="SIGUDANG" style="align:center;width:400px;height:100px;">
+       </h1>
 
         <div class="topnav" style="float:center">
-            <a href="#">HOME</a>
-            <a href="#" style="float:center">STOK BARANG TOKO</a>
-            <a href="#" style="float:center">KIRIM BARANG</a>
-            <a href="#" style="float:center">PENJUALAN BARANG</a>
-            <a href="#" style="float:center">PENERIMAAN BARANG</a>
+            <a href="index.html">HOME</a>
+            <a href="HalamanLihatTabelStokBarangToko.html" style="float:center">STOK BARANG TOKO</a>
+            <a href="HalamanLihatTabelKirimBarang.html" style="float:center">KIRIM BARANG</a>
+            <a href="HalamanLihatTabelTransaksi.html" style="float:center">PENJUALAN BARANG</a>
+            <a href="HalamanMenerimaBarang.html" style="float:center">PENERIMAAN BARANG</a>
         </div>
 
         <div class="row">
@@ -151,84 +151,163 @@
                         <label style="color:white" for =name"><b></b></label>
                         <input type ="text" placeholder="masukkan id toko " id="IDToko" required>
                         <button type="button" onclick="login()" id="btn">OK</button>
-                        <button type="button" onclick="login1()" id="btn1">OK</button>
                         <p id="output">
                         </p>
-                        <div id="tab">
-                            <div id="tab1">
+                        <div id="tab1">
+                            <div id="tab2">
 
+                            </div>
+
+<!--                            <div></div>
+                            <div></div>
+                            <div class="row">
+                                <div class="leftcolumn">
+                                    <div class="card">
+                                        <button type="button" onclick="loadtabelstok()">Tampilkan Tabel Stok Gudang</button>
+                                        <p id="demo2"></p> 
+                                        <div id="tampil1"></div>
+                                        <br>
+                                        <br>-->
+                                        <script>
+
+                                            function login() {
+                                                var json = {
+                                                    "IDtoko": document.getElementById("IDToko").value
+
+                                                };
+                                                var xmlhttp = new XMLHttpRequest();
+                                                var url = "http://202.94.83.190:8080/165314035_RPL_GudangToko_Service2/webresources/StokToko";
+                                                xmlhttp.onreadystatechange = function () {
+                                                    if (this.readyState == 4 && this.status == 200) {
+                                                        myFunction(this.responseText);
+                                                    }
+                                                }
+                                                xmlhttp.open("GET", url, true);
+                                                xmlhttp.send();
+
+                                                function myFunction(response) {
+                                                    var arr = JSON.parse(response);
+                                                    var i;
+                                                    var out = "<table id='tabel'><tr><th>ID Barang Toko</th><th>ID Toko</th><th>nama barang </th><th>jumlah barang</th><th>harga barang</th>";
+
+                                                    for (i = 0; i < arr.length; i++) {
+                                                        out += "<tr><td>" +
+                                                                arr[i].IDBarangToko + "</td><td>" + arr[i].IDToko + "</td><td>" +
+                                                                arr[i].namaBarang + "</td><td>" + arr[i].jumlahBarang + "</td><td>" +
+                                                                arr[i].hargaBarang;
+
+                                                    }
+                                                    out += "</table>";
+                                                    document.getElementById("tab1").innerHTML = out;
+                                               
+                                
+                                                }
+                                                
+                                                function login1() {
+                                                var json = {
+                                                    "IDtoko": document.getElementById("IDToko").value
+
+                                                };
+                                                var xmlhttp = new XMLHttpRequest();
+                                                var url = "http://202.94.83.190:8080/165314035_RPL_GudangToko_Service2/webresources/stokBarang";
+                                                xmlhttp.onreadystatechange = function () {
+                                                    if (this.readyState == 4 && this.status == 200) {
+                                                        myFunction(this.responseText);
+                                                    }
+                                                }
+                                                xmlhttp.open("GET", url, true);
+                                                xmlhttp.send();
+
+                                                function myFunction(response) {
+                                                    var arr = JSON.parse(response);
+                                                    var i;
+                                                    var out = "<table id='tabel'><tr><th>ID Barang Toko</th><th>ID Toko</th><th>nama Barang</th><th>jumlah Barang</th><th>harga Barang</th>";
+
+                                                    for (i = 0; i < arr.length; i++) {
+                                                        out += "<tr><td>" +
+                                                                arr[i].IDBarangToko + "</td><td>" + arr[i].IDToko + "</td><td>" +arr[i].namaBarang+"</td><td>" +arr[i].jumlahBarang
+                                                                arr[i].hargaBarang;
+
+                                                    }
+                                                    out += "</table>";
+                                                    document.getElementById("tab1").innerHTML = out;
+                                                }
+                                                
+                                            }
+                                            }
+                                        </script>
+                                        <div></div>
+                                        <script>
+
+                                            function login1() {
+                                                var json = {
+                                                    "IDtoko": document.getElementById("IDToko").value
+
+                                                };
+                                                var xmlhttp = new XMLHttpRequest();
+                                                var url = "http://202.94.83.190:8080/165314035_RPL_GudangToko_Service2/webresources/stokBarang";
+                                                xmlhttp.onreadystatechange = function () {
+                                                    if (this.readyState == 4 && this.status == 200) {
+                                                        myFunction(this.responseText);
+                                                    }
+                                                }
+                                                xmlhttp.open("GET", url, true);
+                                                xmlhttp.send();
+
+                                                function myFunction(response) {
+                                                    var arr = JSON.parse(response);
+                                                    var i;
+                                                    var out = "<table id='tabel'><tr><th>ID Barang Toko</th><th>ID Toko</th><th>nama Barang</th><th>jumlah Barang</th><th>harga Barang</th>";
+
+                                                    for (i = 0; i < arr.length; i++) {
+                                                        out += "<tr><td>" +
+                                                                arr[i].IDBarangToko + "</td><td>" + arr[i].IDToko + "</td><td>" +arr[i].namaBarang+"</td><td>" +arr[i].jumlahBarang
+                                                                arr[i].hargaBarang;
+
+                                                    }
+                                                    out += "</table>";
+                                                    document.getElementById("tab1").innerHTML = out;
+                                                }
+                                                
+                                            }
+                                        </script>
+
+<!--                                        <script>
+
+                                            function login1() {
+                                                var json = {
+                                                    "IDtoko": document.getElementById("IDToko").value
+
+                                                };
+                                                var xmlhttp = new XMLHttpRequest();
+                                                var url = "http://202.94.83.190:8080/165314035_RPL_GudangToko_Service2/webresources/stokGudang";
+                                                xmlhttp.onreadystatechange = function () {
+                                                    if (this.readyState == 4 && this.status == 200) {
+                                                        myFunction(this.responseText);
+                                                    }
+                                                }
+                                                xmlhttp.open("GET", url, true);
+                                                xmlhttp.send();
+
+                                                function myFunction(response) {
+                                                    var arr = JSON.parse(response);
+                                                    var i;
+                                                    var out = "<table id='tabel'><tr><th>ID Barang Gudang</th><th>nama Barang</th><th>jumlah Barang</th>";
+
+                                                    for (i = 0; i < arr.length; i++) {
+                                                        out += "<tr><td>" +
+                                                                arr[i].IDBarangGudang + "</td><td>" + arr[i].namaBarang + "</td><td>" +
+                                                                arr[i].jumlahBarang;
+
+                                                    }
+                                                    out += "</table>";
+                                                    document.getElementById("tab2").innerHTML = out;
+                                                }
+                                                
+                                            }
+                                        </script>
+           -->
                         </div>
-
-                        <script>
-
-                            function login() {
-                                var json = {
-                                    "IDtoko": document.getElementById("IDToko").value
-
-                                };
-                                var xmlhttp = new XMLHttpRequest();
-        var url = "http://202.94.83.190:8080/165314035_RPL_GudangToko_Service2/webresources/StokToko";
-        xmlhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                myFunction(this.responseText);
-            }
-        }
-        xmlhttp.open("GET", url, true);
-        xmlhttp.send();
-
-        function myFunction(response) {
-            var arr = JSON.parse(response);
-            var i;
-            var out = "<table id='tabel'><tr><th>ID Barang Toko</th><th>ID Toko</th><th>nama barang </th><th>jumlah barang</th><th>harga barang</th>";
-
-            for (i = 0; i < arr.length; i++) {
-                out += "<tr><td>" +
-                        arr[i].IDBarangToko + "</td><td>" + arr[i].IDToko + "</td><td>" +
-                        arr[i].namaBarang + "</td><td>" +arr[i].jumlahBarang + "</td><td>" +
-                        arr[i].hargaBarang;
-
-            }
-            out += "</table>";
-            document.getElementById("tab").innerHTML = out;
-        }
-    }
-    </script>
-    <div></div>
-    <div></div>
-    <div></div>
-    <script>
-
-                            function login1() {
-                                var json = {
-                                    "IDtoko": document.getElementById("IDToko").value
-
-                                };
-                                var xmlhttp = new XMLHttpRequest();
-        var url = "http://202.94.83.190:8080/165314035_RPL_GudangToko_Service2/webresources/stokGudang";
-        xmlhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                myFunction(this.responseText);
-            }
-        }
-        xmlhttp.open("GET", url, true);
-        xmlhttp.send();
-
-        function myFunction(response) {
-            var arr = JSON.parse(response);
-            var i;
-            var out = "<table id='tabel'><tr><th>ID Barang Gudang</th><th>nama Barang</th><th>jumlah Barang</th>";
-
-            for (i = 0; i < arr.length; i++) {
-                out += "<tr><td>" +
-                        arr[i].IDBarangGudang + "</td><td>" + arr[i].namaBarang + "</td><td>" +
-                        arr[i].jumlahBarang;
-
-            }
-            out += "</table>";
-            document.getElementById("tab1").innerHTML = out;
-        }
-    }
-    </script>
-
+                        
                         </body>
                         </html>
