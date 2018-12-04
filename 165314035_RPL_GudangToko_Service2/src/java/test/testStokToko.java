@@ -22,6 +22,8 @@ public class testStokToko {
             System.out.println(list.get(i).getNamaBarang());
             System.out.println(list.get(i).getHargaBarang());
             System.out.println(list.get(i).getJumlahBarang());
+            System.out.println(list.get(i).getIdtoko());
+            System.out.println("\n");
         }
     }
 }

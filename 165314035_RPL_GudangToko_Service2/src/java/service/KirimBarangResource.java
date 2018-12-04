@@ -43,6 +43,7 @@ public class KirimBarangResource {
      * Retrieves representation of an instance of service.KirimBarangResource
      *
      * @param idbarang
+     * @param idtoko
      * @param namaBarang
      * @param jumlahBarang
      * @param tanggal
@@ -52,8 +53,9 @@ public class KirimBarangResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getKirimBarang(
             @QueryParam("idbarang") Integer idbarang,
+            @QueryParam("idtoko") int idtoko,
             @QueryParam("namaBarang") String namaBarang,
-            @QueryParam("jumlahBarang") Integer jumlahBarang,
+            @QueryParam("jumlahBarang") int jumlahBarang,
             @QueryParam("tanggal") Date tanggal) {
         //TODO return proper representation object
         KirimBarangHelper helper = new KirimBarangHelper();
@@ -93,7 +95,53 @@ public class KirimBarangResource {
         Gson gson = new Gson();
         TabelKirimBarang kirim = gson.fromJson(data, TabelKirimBarang.class);
         KirimBarangHelper help = new KirimBarangHelper();
-        help.kirimBarang(kirim.getNamaBarang(), kirim.getJumlahBarang(), (Date) kirim.getTanggal());
+        help.kirimBarang(kirim.getIdtoko(), kirim.getNamaBarang(), kirim.getJumlahBarang(), (Date) kirim.getTanggal());
         return Response.status(200).entity(kirim).build();
+    }
+    
+    @GET
+    @Path("cariKirimBarang")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response cariKirimBarang(@QueryParam("idtoko") int idtoko) {
+        KirimBarangHelper help = new KirimBarangHelper();
+        List<TabelKirimBarang> list = help.cariKirimBarang(idtoko);
+        Gson gson = new Gson();
+        
+        return Response.status(200).entity(gson.toJson(list))
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods",
+                        "GET,POST,HEAD,OPTIONS,PUT")
+                .header("Access-Control-Allow-Headers",
+                        "Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers")
+                .header("Access-Exposed-Headers",
+                        "Access-Control-Allow-Origin,Access-Control-Allow-Credentials")
+                .header("Access-Support-Credentials",
+                        "true")
+                .header("Access-Control-Max-Age", "2")
+                .header("Access-Preflight-Maxage", "2")
+                .build();
+    }
+    
+    @GET
+    @Path("cariNamaBarang")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response cariNamaBarang(@QueryParam("namaBarang") String namaBarang) {
+        KirimBarangHelper help = new KirimBarangHelper();
+        List<TabelKirimBarang> list = help.cariNamaKirimBarang(namaBarang);
+        Gson gson = new Gson();
+        
+        return Response.status(200).entity(gson.toJson(list))
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods",
+                        "GET,POST,HEAD,OPTIONS,PUT")
+                .header("Access-Control-Allow-Headers",
+                        "Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers")
+                .header("Access-Exposed-Headers",
+                        "Access-Control-Allow-Origin,Access-Control-Allow-Credentials")
+                .header("Access-Support-Credentials",
+                        "true")
+                .header("Access-Control-Max-Age", "2")
+                .header("Access-Preflight-Maxage", "2")
+                .build();
     }
 }

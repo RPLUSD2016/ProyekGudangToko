@@ -22,6 +22,8 @@ public class testKirimBarang {
             System.out.println("nama barang: "+list.get(i).getNamaBarang());
             System.out.println("jumlah barang: "+list.get(i).getJumlahBarang());
             System.out.println("tanggal: "+list.get(i).getTanggal());
+            System.out.println("ID Toko: "+list.get(i).getIdtoko());
+            System.out.println("\n");
         }
     }
 }

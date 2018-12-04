@@ -40,6 +40,7 @@ public class TokoResources {
 
     /**
      * Retrieves representation of an instance of service.TokoResources
+     *
      * @return an instance of java.lang.String
      */
 //    @GET
@@ -48,42 +49,49 @@ public class TokoResources {
 //        //TODO return proper representation object
 //        throw new UnsupportedOperationException();
 //    }
-
     /**
      * PUT method for updating or creating an instance of TokoResources
+     *
      * @param content representation for the resource
      */
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public void putJson(String content) {
     }
-    
+
+//    @GET
+//    @Path("login")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response getLogin(@QueryParam("idtoko") Integer idtoko, 
+//            @QueryParam("namaToko") String namatoko,
+//            @QueryParam("alamatToko") String alamattoko) {
+//        
+//        TokoHelper helper = new TokoHelper();
+////        TabelToko toko = helper.LoginToko(idtoko);
+//        List<TabelToko> list = helper.getAllToko();
+//        Gson gson = new Gson();
+//        return Response.status(200)
+//                .entity(gson.toJson(list))
+//                .header("Access-Control-Allow-Origin", "*")
+//                .header("Access-Control-Allow-Methods",
+//                        "GET,POST,HEAD,OPTIONS,PUT")
+//                .header("Access-Control-Allow-Headers",
+//                        "Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers")
+//                .header("Access-Exposed-Headers",
+//                        "Access-Control-Allow-Origin,Access-Control-Allow-Credentials")
+//                .header("Access-Support-Credentials",
+//                        "true")
+//                .header("Access-Control-Max-Age", "2")
+//                .header("Access-Preflight-Maxage", "2")
+//                .build();
+//    }
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getLogin(@QueryParam("idtoko") Integer idtoko, 
-            @QueryParam("namaToko") String namatoko,
-            @QueryParam("alamatToko") String alamattoko) {
-        
-        TokoHelper helper = new TokoHelper();
-//        TabelToko toko = helper.LoginToko(idtoko);
-        List<TabelToko> list = helper.getAllToko();
-        Gson gson = new Gson();
-        return Response.status(200)
-                .entity(gson.toJson(list))
-                .header("Access-Control-Allow-Origin", "*")
-                .header("Access-Control-Allow-Methods",
-                        "GET,POST,HEAD,OPTIONS,PUT")
-                .header("Access-Control-Allow-Headers",
-                        "Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers")
-                .header("Access-Exposed-Headers",
-                        "Access-Control-Allow-Origin,Access-Control-Allow-Credentials")
-                .header("Access-Support-Credentials",
-                        "true")
-                .header("Access-Control-Max-Age", "2")
-                .header("Access-Preflight-Maxage", "2")
-                .build();
+    @Path("login")
+    @Produces(javax.ws.rs.core.MediaType.APPLICATION_JSON)
+    public String doLogin(@QueryParam("idtoko") int idtoko) {
+        return new Gson().toJson(new TokoHelper().LoginToko(idtoko));
     }
-    
+
     @POST
     @Path("tambahToko")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -106,5 +114,29 @@ public class TokoResources {
                 .header("Access-Preflight-Maxage", "2")
                 .build();
     }
-    
+
+    @GET
+    @Path("cariToko")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response cariToko(@QueryParam("idtoko") Integer idtoko) {
+        TokoHelper help = new TokoHelper();
+        List<TabelToko> list = help.cariToko(idtoko);
+//        TabelToko toko = (TabelToko) help.cariToko(idtoko);
+        Gson gson = new Gson();
+        
+        return Response.status(200).entity(gson.toJson(list))
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods",
+                        "GET,POST,HEAD,OPTIONS,PUT")
+                .header("Access-Control-Allow-Headers",
+                        "Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers")
+                .header("Access-Exposed-Headers",
+                        "Access-Control-Allow-Origin,Access-Control-Allow-Credentials")
+                .header("Access-Support-Credentials",
+                        "true")
+                .header("Access-Control-Max-Age", "2")
+                .header("Access-Preflight-Maxage", "2")
+                .build();
+    }
+
 }

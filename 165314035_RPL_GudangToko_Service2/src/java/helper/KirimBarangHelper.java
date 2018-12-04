@@ -33,14 +33,46 @@ public class KirimBarangHelper {
         return list;
     }
     
-    public void kirimBarang(String namaBarang, 
+    public void kirimBarang(int idtoko, String namaBarang, 
             int jumlahBarang, Date tanggal){
         
         Session session = RPLHibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        TabelKirimBarang kirim = new TabelKirimBarang(namaBarang, jumlahBarang, tanggal);
+        TabelKirimBarang kirim = new TabelKirimBarang(idtoko, namaBarang, jumlahBarang, tanggal);
         session.saveOrUpdate(kirim);
         transaction.commit();
         session.close();
+    }
+    
+    public List<TabelKirimBarang> cariKirimBarang(int idtoko) {
+        Session session = RPLHibernateUtil.getSessionFactory().openSession();
+        Transaction ts = session.beginTransaction();
+        String query = "from TabelKirimBarang kr where kr.idtoko=:idtoko";
+        Query q = session.createQuery(query);
+        q.setParameter("idtoko", idtoko);
+        List<TabelKirimBarang> list = q.list();
+        ts.commit();
+        session.close();
+        if (list.size() > 0) {
+            return list;
+        } else {
+            return null;
+        }
+    }
+    
+    public List<TabelKirimBarang> cariNamaKirimBarang(String namaBarang) {
+        Session session = RPLHibernateUtil.getSessionFactory().openSession();
+        Transaction tr = session.beginTransaction();
+        String query = "from TabelKirimBarang kr where kr.namaBarang=:namaBarang";
+        Query q = session.createQuery(query);
+        q.setParameter("namaBarang", namaBarang);
+        List<TabelKirimBarang> list = q.list();
+        tr.commit();
+        session.close();
+        if (list.size() > 0) {
+            return list;
+        } else {
+            return null;
+        }
     }
 }

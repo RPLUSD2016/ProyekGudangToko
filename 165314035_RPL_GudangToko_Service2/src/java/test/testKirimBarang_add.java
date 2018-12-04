@@ -27,8 +27,8 @@ public class testKirimBarang_add {
 //            }
             KirimBarangHelper kirim = new KirimBarangHelper();
             SimpleDateFormat date = new SimpleDateFormat("yyyyMMdd");
-            Date tgl = date.parse("20181106");
-            kirim.kirimBarang("Dettol Tisu Basah", 100, tgl);
+            Date tgl = date.parse("20181120");
+            kirim.kirimBarang(20180001, "Wafer Tanggo Vanilla", 100, tgl);
 //            List<TabelKirimBarang> list = kirim.getAllKirimBarang();
 //            for (int i = 0; i < list.size(); i++) {
 //                System.out.println("id barang: " + list.get(i).getIdbarang());
