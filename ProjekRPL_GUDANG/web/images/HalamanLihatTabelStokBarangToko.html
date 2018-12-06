@@ -59,7 +59,7 @@
                 color: white;
             }
         </style>
-        <title>MENGIRIMBARANG</title>
+        <title>LIHATTABELSTOKBARANG</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="BHost template project">
@@ -124,8 +124,8 @@
                     <div class="row">
                         <div class="col">
                             <div class="home_content">
-                                <div class="home_image"><img src="images/elements.png" alt=""></div>
-                                <div class="home_title">TAMBAH PENGIRIMAN BARANG</div>		
+                                <div class="home_image"><img src="images/services.png" alt=""></div>
+                                <div class="home_title">STOK TOKO</div>		
                             </div>
                         </div>
                     </div>
@@ -147,98 +147,58 @@
             <div class="services">
                 <div class="container">
                     <div class="domain_search">
-                        <h2> Masukkan Nama Barang</h2>
+                        <h2> Masukkan ID Toko</h2>
                         <label style="color:white" for =name"><b></b></label>
-                        <input type ="text" placeholder="Ketikkan Nama Barang " id="NamaBarang" required>
+                        <input type ="text" placeholder="Ketikkan ID Toko Disini " id="IDToko" required>
                         <br>
-                        <button type="button"  onclick="loadDoc()" id="btn">Cari Barang</button>
+                        <br>
+                        <button type="button"  onclick="login()" id="btn">Tampilkan Stok Barang Toko</button>
                     
-                         <br>
                          <br>
                          <br>
 
                         <p id="output">
                         </p>
+                        <div id="tab"></div>
+                        <div id="tab1">
 
-                        
+                        </div>
+
                         <script>
-                            function loadDoc() {
-                                var url = "http://202.94.83.190:8080/165314035_RPL_GudangToko_Service2/webresources/StokToko/cariNamaBarang?namaBarang=" + NamaBarang.value;
-                                var xhttp = new XMLHttpRequest();
-                                xhttp.open("GET", url, true);
-                                xhttp.send();
-                                xhttp.onreadystatechange = function () {
+
+                            function login() {
+                                var json = {
+                                    "IDtoko": document.getElementById("IDToko").value
+
+                                };
+                                var xmlhttp = new XMLHttpRequest();
+                                var url = "http://202.94.83.190:8080/165314035_RPL_GudangToko_Service2/webresources/StokToko/cariStokIDToko?idtoko=" + IDToko.value;
+                                xmlhttp.onreadystatechange = function () {
                                     if (this.readyState == 4 && this.status == 200) {
-                                        
-                                        document.getElementById("output").innerHTML = this.responseText;
-                                        var myObj = JSON.parse(this.responseText);
-                                         document.getElementById("idbarangToko").value = myObj.IDBarangToko;
-                                            document.getElementById("idtoko").value = myObj.idtoko;
-                                        document.getElementById("hargaBarang").value = myObj.hargaBarang;
+                                        myFunction(this.responseText);
+                                    }
+                                }
+                                xmlhttp.open("GET", url, true);
+                                xmlhttp.send();
+
+                                function myFunction(response) {
+                                    var arr = JSON.parse(response);
+                                    var i;
+                                    var out = "<table id='tabel'><tr><th>ID Barang Toko</th><th>ID Toko</th><th>nama barang </th><th>jumlah barang</th><th>harga barang</th>";
+
+
+                                    for (i = 0; i < arr.length; i++) {
+                                        out += "<tr><td>" +
+                                                arr[i].idbarangToko + "</td><td>" + arr[i].idtoko + "</td><td>" +
+                                                arr[i].namaBarang + "</td><td>" + arr[i].jumlahBarang + "</td><td>" +
+                                                arr[i].hargaBarang;
 
                                     }
+                                    out += "</table>";
+                                    document.getElementById("tab").innerHTML = out;
                                 }
                             }
                         </script>
-                      
-                        <form name="tesJson" action=""
-                              onsubmit="return make_json(this);" method="POST">
-
-                            <div class="container">
-                                <div class="form-group">
-                                    <label for="namaBarang">Nama Barang</label>
-                                    <input type="namaBarang" class="form-control" id="namaBarang" placeholder="Masukkan Nama Barang">
-                                </div>
-                                <div class="form-group">
-                                    <label for="idbarangToko">ID Barang:</label>
-                                    <input type="idbarangToko" class="form-control" id="idbarangToko" placeholder="Masukkan ID Barang Toko">
-                                </div>
-                                <div class="form-group">
-                                    <label for="idtoko">ID TOKO:</label>
-                                    <input type="idtoko" class="form-control" id="IDToko" placeholder="Masukkan ID Barang Toko">
-                                </div>
-                                 
-                                
-                                <div class="form-group">
-                                    <label for="jumlahBarang">jumlah Barang:</label>
-                                    <input type="jumlahBarang" class="form-control" id="jumlahBarang" placeholder="jumlah Barang">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="tanggal">tanggal pembayaran:</label>
-                                    <input style=" width:100%;"  class="form-control" type="date" id="tanggal" value="">
-                                </div>
-
-                                <button type="Tambahkan" class="btn btn-default">Ajukan Pengiriman</button>
-                            </div>
-
-                        </form>
-
-                        <pre id="output">
-                        </pre>
-                        <script>
-                            function make_json(form) {
-                                var json = {
-                                    "IDTransaksi": form.idtransaksi.value,
-                                    "IDToko": form.idtoko.value,
-                                    "namaBarang": form.namaBarang.value,
-                                    "hargaBarang": form.hargaBarang.value,
-                                    "jumlahBarang": form.jumlahBarang.value,
-                                    "hargaTotal": form.hargaTotal.value,
-                                    "tanggal": form.tanggal.value
-                                };
-                                var html = JSON.stringify(json, 0, 100);
-                                var Url = "http://202.94.83.190:8080/165314035_RPL_GudangToko_Service2/webresources/KirimBarang/simpan";
-                                var xhr = new XMLHttpRequest();
-                                xhr.open('POST', Url, false);
-                                xhr.setRequestHeader("Content-type", "application/json");
-                                xhr.send(html);
-
-                                document.getElementById("output").innerHTML = html;
-                                return false;
-                            }
-                        </script>
-
                     </div>
                 </div>
             </div>
